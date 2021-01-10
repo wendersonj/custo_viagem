@@ -1,2 +1,2 @@
-# custo_viagem_amigos
-Calculadora para custo de viagens entre amigos
+# Calculadora Custo de Viagens
+Calculadora para custo de viagens - Versão 3 beta
