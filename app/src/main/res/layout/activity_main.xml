@@ -85,7 +85,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Distancia da viagem"
                     app:boxBackgroundColor="@color/white"
-                    app:placeholderText="Qual a distância até o seu destino ?"
+                    app:placeholderText="Qual a distância, em km, até o seu destino ?"
                     app:startIconDrawable="@drawable/ic_baseline_location_on_24"
                     app:suffixText=" km">
 

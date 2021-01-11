@@ -1,10 +1,12 @@
 package com.example.calculadoraviagens3
 
 import android.app.Activity
+import android.content.Context
 import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
@@ -13,29 +15,43 @@ import com.google.android.material.textfield.TextInputEditText
 
 
 class MainActivity : AppCompatActivity() {
-    lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         binding.buttonCalculate.setOnClickListener {
             calculateTravel(this)
+            hideKeyboard(it)
         }
 
         binding.buttonReset.setOnClickListener {
             resetFields(this)
+            showKeyboard(it)
         }
 
         binding.shareButton.setOnClickListener {
+            hideKeyboard(it)
             Toast.makeText(
                 this,
                 "Em breve !\nCobrem dos nossos desenvolvedores.\n=)",
                 Toast.LENGTH_SHORT
             ).show()
         }
+    }
 
+    fun showKeyboard(view: View) {
+
+        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
 
     }
+
+    fun hideKeyboard(view: View) {
+        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+
 
     private fun resetFields(activity: Activity) {
         binding.apply {
@@ -54,6 +70,8 @@ class MainActivity : AppCompatActivity() {
                 campo.error = null
             }
 
+            //invalidateAll() //nao uso gone... nao preciso fazer rebind
+
             mensagemCusto.visibility = View.INVISIBLE
             custoText.visibility = View.INVISIBLE
 
@@ -63,7 +81,10 @@ class MainActivity : AppCompatActivity() {
                 Toast.LENGTH_SHORT
             ).show()
 
+            //leva o usuário para o inicio do form
+            precoGasEdit.requestFocus()
         }
+
     }
 
     private fun calculateTravel(activity: MainActivity) {
@@ -147,8 +168,12 @@ class MainActivity : AppCompatActivity() {
                 RaiseFillToast(activity)
             } else {
 
-                custoText.text =
-                    "R$ " + ((((distancia / autonomia) * precoGas) + adicional) / qtdPessoas).toString()
+                var custo = ((((distancia / autonomia) * precoGas) + adicional) / qtdPessoas)
+
+                //R$ (valor com 2 decimais)
+                custoText.text = "R$ " + String.format("%.2f", custo)
+                //valorTotal.text =
+
 
                 mensagemCusto.visibility = View.VISIBLE
                 custoText.visibility = View.VISIBLE
