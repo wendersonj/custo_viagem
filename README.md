@@ -1,2 +1,5 @@
 # Calculadora Custo de Viagens
-Calculadora para custo de viagens - Versão 3 beta
+Calculadora para custo de viagens
+
+Exemplo de uso:
+![Alt Text](https://github.com/wendersonj/custo_viagem/blob/main/video_app.gif)
