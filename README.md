@@ -2,4 +2,7 @@
 Calculadora para custo de viagens
 
 Exemplo de uso:
-![Alt Text](https://github.com/wendersonj/custo_viagem/blob/main/video_app.gif =250x250)
+
+<img src="https://github.com/wendersonj/custo_viagem/blob/main/video_app.gif" alt="video_uso" width="250" height="250">
+
+
