@@ -2,6 +2,7 @@ package com.example.calculadoraviagens3
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -30,13 +31,20 @@ class MainActivity : AppCompatActivity() {
             showKeyboard(it)
         }
 
-        binding.shareButton.setOnClickListener {
+        binding.shareFab.setOnClickListener {
+
+            val message: String =
+                "O custo para viajar ${binding.distanciaEdit.text} km com a gasolina custando R$ ${binding.precoGasEdit.text}," +
+                        " o veículo fazendo ${binding.autonomiaEdit.text} km/L e tendo um custo adicional de R$ ${binding.adicionalEdit.text} para" +
+                        " ${binding.qtdPessoasEdit.text} pessoas, a viagem vai sair, por pessoa, por R$ ${binding.custoText.text}. \n\nCálculo realizo pela Calculadora de Viagens"
+
             hideKeyboard(it)
-            Toast.makeText(
-                this,
-                "Em breve !\nCobrem dos nossos desenvolvedores.\n=)",
-                Toast.LENGTH_SHORT
-            ).show()
+            val intent = Intent()
+            intent.action = Intent.ACTION_SEND
+            intent.putExtra(Intent.EXTRA_TEXT, message)
+            intent.type = "text/plain"
+
+            startActivity(Intent.createChooser(intent, "Escolha o aplicativo para compartilhar: "))
         }
     }
 
@@ -74,6 +82,7 @@ class MainActivity : AppCompatActivity() {
 
             mensagemCusto.visibility = View.INVISIBLE
             custoText.visibility = View.INVISIBLE
+            shareFab.visibility = View.INVISIBLE
 
             Toast.makeText(
                 activity.applicationContext,
@@ -177,6 +186,7 @@ class MainActivity : AppCompatActivity() {
 
                 mensagemCusto.visibility = View.VISIBLE
                 custoText.visibility = View.VISIBLE
+                shareFab.visibility = View.VISIBLE
             }
         }
     }

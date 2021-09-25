@@ -38,7 +38,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Preço da gasolina"
                     app:boxBackgroundColor="@color/white"
-                    app:placeholderText="Qual o preço da gasolina da região ?"
+                    app:placeholderText="Qual o preço da gasolina ?"
                     app:prefixText="R$ "
 
                     app:startIconDrawable="@drawable/ic_baseline_local_gas_station_24">
@@ -218,16 +218,21 @@
             app:layout_constraintStart_toStartOf="parent" />
 
 
-        <ImageButton
-            android:id="@+id/shareButton"
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/share_fab"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="15dp"
-            android:src="@drawable/ic_baseline_share_24"
-            android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            android:layout_gravity="end|bottom"
+            android:layout_margin="16dp"
+            android:contentDescription="@string/share"
+            android:src="@android:drawable/ic_menu_share"
+            app:layout_constraintBottom_toBottomOf="@id/body"
+            app:layout_constraintEnd_toEndOf="@+id/body"
+            android:visibility="invisible"
+            />
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
