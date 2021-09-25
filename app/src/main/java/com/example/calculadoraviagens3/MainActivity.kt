@@ -3,23 +3,33 @@ package com.example.calculadoraviagens3
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.calculadoraviagens3.databinding.ActivityMainBinding
+import com.google.android.gms.ads.AdRequest
 import com.google.android.material.textfield.TextInputEditText
+import com.google.android.gms.ads.MobileAds
+
 
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        println("Comecou")
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        MobileAds.initialize(this@MainActivity)
+
+        //binding.adViewBottom.adUnitId = "" //teste
+        //binding.adViewBottom.adUnitId = "ca-app-pub-7076539801745121/5685741911" //prd
+
+        val adRequest = AdRequest.Builder().build()
+        binding.adViewBottom.loadAd(adRequest)
 
         binding.buttonCalculate.setOnClickListener {
             calculateTravel(this)
