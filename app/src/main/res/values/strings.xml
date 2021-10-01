@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Calculadora de Viagens</string>
     <string name="share">share</string>
-    <string name="welcome_message">Bem vindo !\nVersão 3 Beta</string>
+    <string name="welcome_message">Bem vindo ! Para calcular sua viagem preencha os campos do formulário</string>
     <string name="adicional_value">Valor adicional</string>
     <string name="travel_distance">Distancia da viagem</string>
     <string name="gas_price">Preço da gasolina</string>
@@ -11,4 +11,6 @@
     <string name="clean">Limpar</string>
     <string name="cost_per_person">Custo por pessoa:</string>
     <string name="save_btn">Salvar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

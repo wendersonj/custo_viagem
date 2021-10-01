@@ -1,0 +1,6 @@
+<resources>
+
+    <style name="Widget.Theme.CalculadoraViagens3.MyView" parent="Theme.AppCompat.DayNight.DarkActionBar">
+        <item name="android:background">@color/gray_600</item>
+    </style>
+</resources>

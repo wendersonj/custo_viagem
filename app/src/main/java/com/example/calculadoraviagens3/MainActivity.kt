@@ -2,18 +2,17 @@ package com.example.calculadoraviagens3
 
 import android.app.Activity
 import android.content.Context
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.calculadoraviagens3.databinding.ActivityMainBinding
 import com.google.android.gms.ads.AdRequest
-import com.google.android.material.textfield.TextInputEditText
 import com.google.android.gms.ads.MobileAds
-
+import com.google.android.material.textfield.TextInputEditText
 
 
 class MainActivity : AppCompatActivity() {
@@ -23,17 +22,53 @@ class MainActivity : AppCompatActivity() {
 
         println("Comecou")
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        MobileAds.initialize(this@MainActivity)
 
-        //binding.adViewBottom.adUnitId = "" //teste
+        MobileAds.initialize(this@MainActivity)
         //binding.adViewBottom.adUnitId = "ca-app-pub-7076539801745121/5685741911" //prd
 
-        val adRequest = AdRequest.Builder().build()
-        binding.adViewBottom.loadAd(adRequest)
+        val adRequest1 = AdRequest.Builder().build()
+        binding.adViewBottom.loadAd(adRequest1)
+
+        val adRequest2 = AdRequest.Builder().build()
+        binding.adViewBottom2.loadAd(adRequest2)
+
 
         binding.buttonCalculate.setOnClickListener {
-            calculateTravel(this)
+            val cost = calculateTravel(this)
             hideKeyboard(it)
+
+            if (cost != null) {
+                binding.costResultContainer.visibility = View.VISIBLE
+                //Navigation.findNavController(this, R.id.main_fragment).navigate(R.id.action_mainActivity2_to_cost_result_fragment)
+
+                var message: String =
+                    "O custo por pessoa será de R$ ${cost}. A viagem será de ${binding.distanciaEdit.text} km com " +
+                            "a gasolina custando R$ ${binding.precoGasEdit.text}," +
+                            " o veículo fazendo ${binding.autonomiaEdit.text} km/L e" +
+                            " tendo um custo adicional de R$ ${binding.adicionalEdit.text} para" +
+                            " ${binding.qtdPessoasEdit.text} pessoa"
+                message = message.run {
+                    if (binding.qtdPessoasEdit.text.toString().toInt() > 1) {
+                        println("deu")
+                        this.plus("s.")
+                    } else {
+                        this.plus('.')
+                    }
+                }
+
+                val data = Bundle()
+                val bottomMessageResult = BottomMessageResult()
+                val fragment_manager = getSupportFragmentManager().beginTransaction()
+                data.putString("result_message", message)
+
+                binding.costResultContainer.setBackgroundColor(Color.TRANSPARENT)
+                bottomMessageResult.arguments = data
+                bottomMessageResult.show(fragment_manager, "cost_result_bottom_message")
+
+                //fragment_manager.replace(R.id.cost_result_container, bottomMessageResult).commit()
+            }
+
+            binding.costResultContainer.visibility = View.INVISIBLE
         }
 
         binding.buttonReset.setOnClickListener {
@@ -41,21 +76,7 @@ class MainActivity : AppCompatActivity() {
             showKeyboard(it)
         }
 
-        binding.shareFab.setOnClickListener {
 
-            val message: String =
-                "O custo para viajar ${binding.distanciaEdit.text} km com a gasolina custando R$ ${binding.precoGasEdit.text}," +
-                        " o veículo fazendo ${binding.autonomiaEdit.text} km/L e tendo um custo adicional de R$ ${binding.adicionalEdit.text} para" +
-                        " ${binding.qtdPessoasEdit.text} pessoas, a viagem vai sair, por pessoa, por R$ ${binding.custoText.text}. \n\nCálculo realizo pela Calculadora de Viagens"
-
-            hideKeyboard(it)
-            val intent = Intent()
-            intent.action = Intent.ACTION_SEND
-            intent.putExtra(Intent.EXTRA_TEXT, message)
-            intent.type = "text/plain"
-
-            startActivity(Intent.createChooser(intent, "Escolha o aplicativo para compartilhar: "))
-        }
     }
 
     fun showKeyboard(view: View) {
@@ -90,9 +111,9 @@ class MainActivity : AppCompatActivity() {
 
             //invalidateAll() //nao uso gone... nao preciso fazer rebind
 
-            mensagemCusto.visibility = View.INVISIBLE
-            custoText.visibility = View.INVISIBLE
-            shareFab.visibility = View.INVISIBLE
+            //mensagemCusto.visibility = View.INVISIBLE
+            //custoText.visibility = View.INVISIBLE
+            //shareFab.visibility = View.INVISIBLE
 
             Toast.makeText(
                 activity.applicationContext,
@@ -106,7 +127,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun calculateTravel(activity: MainActivity) {
+    private fun calculateTravel(activity: MainActivity): Double? {
         binding.apply {
 
             var emptyField: Boolean = false
@@ -187,18 +208,11 @@ class MainActivity : AppCompatActivity() {
                 RaiseFillToast(activity)
             } else {
 
-                var custo = ((((distancia / autonomia) * precoGas) + adicional) / qtdPessoas)
-
-                //R$ (valor com 2 decimais)
-                custoText.text = "R$ " + String.format("%.2f", custo)
-                //valorTotal.text =
-
-
-                mensagemCusto.visibility = View.VISIBLE
-                custoText.visibility = View.VISIBLE
-                shareFab.visibility = View.VISIBLE
+                return ((((distancia / autonomia) * precoGas) + adicional) / qtdPessoas)
             }
         }
+
+        return null
     }
 
     private fun RaiseFillToast(activity: Activity) {
