@@ -11,112 +11,95 @@
         android:id="@+id/cost_result_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="20dp"
         android:fontFamily="sans-serif-condensed-medium"
         android:gravity="center_horizontal"
+        android:padding="5dp"
+        android:textAlignment="gravity"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Resultado e custo" />
+        tools:text="O custo por pessoa será de R$ 60.0. A viagem será de 100 km com a gasolina custando R$ 7, o veículo fazendo 10 km/L e tendo um custo adicional de R$ 50 para 2 pessoas." />
+
 
     <LinearLayout
-        android:id="@+id/bottom_message_actions"
-        android:layout_width="match_parent"
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:gravity="center_horizontal"
+        android:layout_marginBottom="20dp"
+
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cost_result_message">
+        app:layout_constraintStart_toStartOf="parent">
 
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/share_fab"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:layout_weight="1"
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="5dp"
             android:contentDescription="@string/share"
-            android:src="@android:drawable/ic_menu_share"
-            app:backgroundTint="#388E3C" />
+            android:src="@drawable/ic_outline_share" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/save_fab"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:layout_weight="1"
-            android:contentDescription="@string/save_btn"
-            android:src="@android:drawable/ic_menu_save"
-            app:backgroundTint="#388E3C" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/bottom_message_actions2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bottom_message_actions"
-
-        >
-
-
-
-
-            <TextView
-                android:drawableLeft="@drawable/ic_outline_share"
-                android:id="@+id/share_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Compartilhar"
-                android:textSize="30sp"
-                android:clickable="true"
-                android:focusable="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/share_image"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/share_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
+
             android:focusable="true"
-            android:orientation="horizontal"
-            android:id="@+id/save_box_layout">
+            android:text="@string/share"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/share_image"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/save_image"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="10dp"
-                android:contentDescription="@string/save_btn"
-                android:src="@drawable/ic_favorite"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:tint="@color/black" />
 
-            <TextView
-                android:id="@+id/save_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:text="Salvar"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.478"
-                app:layout_constraintStart_toEndOf="@+id/save_image" />
-        </LinearLayout>
     </LinearLayout>
+
+    <!--
+    <LinearLayout
+        android:id="@+id/save_box_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginBottom="5dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout">
+
+        <ImageView
+            android:id="@+id/save_image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:contentDescription="@string/save_btn"
+            android:src="@drawable/ic_favorite"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:tint="@color/black" />
+
+        <TextView
+            android:id="@+id/save_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="@string/save_btn"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.478"
+            app:layout_constraintStart_toEndOf="@+id/save_image" />
+    </LinearLayout>
+    -->
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

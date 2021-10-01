@@ -25,9 +25,12 @@ class BottomMessageResult : BottomSheetDialogFragment() {
 
         costMessageView.text = message
 
-        val share_fab = view.findViewById<FloatingActionButton>(R.id.share_fab)
-        share_fab.setOnClickListener {
 
+
+        val share_box = view.findViewById<TextView>(R.id.share_text)
+        //val save_box = view.findViewById<LinearLayout>(R.id.save_box_layout)
+
+        share_box.setOnClickListener {
             message += " \n\nCálculo realizado pela Calculadora de Viagens. \nBoa viagem !"
 
             val intent = Intent()
@@ -38,16 +41,7 @@ class BottomMessageResult : BottomSheetDialogFragment() {
             startActivity(Intent.createChooser(intent, "Escolha o aplicativo para compartilhar: "))
         }
 
-        val share_box = view.findViewById<TextView>(R.id.share_text)
-        val save_box = view.findViewById<LinearLayout>(R.id.save_box_layout)
 
-        share_box.setOnClickListener {
-
-        }
-
-        save_box.setOnClickListener {
-
-        }
 
 
         return view
