@@ -22,17 +22,29 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
+
+                android:id="@+id/adViewBottom2"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:orientation="vertical"
+                ads:layout_constraintTop_toTopOf="parent"
+                ads:layout_constraintBottom_toTopOf="@+id/formulario"
+                ads:layout_constraintEnd_toEndOf="parent"
+                ads:layout_constraintStart_toStartOf="parent" />
+
+
+            <LinearLayout
                 android:id="@+id/formulario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                android:background="@drawable/rounded_form"
                 android:orientation="vertical"
                 android:padding="20dp"
-                android:layout_margin="30dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:background="@drawable/rounded_form"
-                >
+                app:layout_constraintTop_toBottomOf="@id/adViewBottom2">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -40,8 +52,7 @@
                     android:layout_gravity="center_horizontal"
                     android:padding="15dp"
                     android:text="@string/welcome_message"
-                    android:textAlignment="center"
-                    />
+                    android:textAlignment="center" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/textInputLayout"
@@ -169,19 +180,18 @@
                         android:gravity="start"
                         android:paddingHorizontal="20dp"
                         android:text="@string/calculate"
-                        android:textSize="20sp"
-                        />
+                        android:textSize="20sp" />
 
                     <ImageButton
-                    android:src="@drawable/ic_trash"
                         android:id="@+id/buttonReset"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
+                        android:contentDescription="@string/clean"
 
-                        android:text="@string/clean"
-                        android:contentDescription="@string/clean" />
+                        android:src="@drawable/ic_trash"
+                        android:text="@string/clean" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -196,35 +206,20 @@
                 ads:layout_constraintTop_toBottomOf="@+id/formulario" />
 
 
-            <com.google.android.gms.ads.AdView
+            <LinearLayout
+                android:orientation="vertical"
                 android:id="@+id/adViewBottom"
-                android:layout_width="wrap_content"
+                android:layout_width="320dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                ads:adSize="BANNER"
-                ads:adUnitId="ca-app-pub-2809928377694695/3026761319"
+                android:layout_marginTop="30dp"
                 ads:flow_horizontalAlign="center"
                 ads:layout_constraintBottom_toBottomOf="parent"
                 ads:layout_constraintEnd_toEndOf="parent"
                 ads:layout_constraintStart_toStartOf="parent"
                 ads:layout_constraintTop_toBottomOf="@+id/cost_result_container" />
 
-            <com.google.android.gms.ads.AdView
-                android:id="@+id/adViewBottom2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"
-                ads:adSize="BANNER"
-                ads:adUnitId="ca-app-pub-2809928377694695/1429241632"
-                ads:flow_horizontalAlign="center"
-                ads:layout_constraintBottom_toBottomOf="parent"
-                ads:layout_constraintEnd_toEndOf="parent"
-                ads:layout_constraintStart_toStartOf="parent"
-                ads:layout_constraintTop_toBottomOf="@+id/adViewBottom" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

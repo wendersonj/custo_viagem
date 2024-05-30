@@ -1,14 +1,13 @@
-package com.example.calculadoraviagens3
+package br.com.wjsouza.dev.calculadora_viagens
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.TextView
+import br.com.wjsouza.dev.calculadora_viagens.R
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class BottomMessageResult : BottomSheetDialogFragment() {
     override fun onCreateView(

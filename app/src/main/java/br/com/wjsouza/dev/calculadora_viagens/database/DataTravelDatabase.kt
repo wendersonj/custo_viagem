@@ -1,11 +1,11 @@
-package com.example.calculadoraviagens3.database
+package br.com.wjsouza.dev.calculadora_viagens.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.calculadoraviagens3.dao.DataTravelDao
-import com.example.calculadoraviagens3.model.DataTravel
+import br.com.wjsouza.dev.calculadora_viagens.dao.DataTravelDao
+import br.com.wjsouza.dev.calculadora_viagens.model.DataTravel
 
 
 @Database(entities = [DataTravel::class], version = 1, exportSchema = false)

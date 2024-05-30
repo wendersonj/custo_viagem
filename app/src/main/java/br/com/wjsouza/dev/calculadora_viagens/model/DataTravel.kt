@@ -1,9 +1,8 @@
-package com.example.calculadoraviagens3.model
+package br.com.wjsouza.dev.calculadora_viagens.model
 
 import androidx.annotation.NonNull
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import org.jetbrains.annotations.NonNls
 
 @Entity(tableName = "data_travel_table")
 class DataTravel(

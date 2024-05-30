@@ -1,10 +1,10 @@
-package com.example.calculadoraviagens3.dao
+package br.com.wjsouza.dev.calculadora_viagens.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.calculadoraviagens3.model.DataTravel
+import br.com.wjsouza.dev.calculadora_viagens.model.DataTravel
 
 @Dao
 interface DataTravelDao {
